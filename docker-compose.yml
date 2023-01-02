@@ -9,3 +9,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+    networks:
+      - inetwork
+networks:
+  inetwork:
