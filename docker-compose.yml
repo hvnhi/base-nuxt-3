@@ -3,13 +3,14 @@ version: "3.7"
 services:
   app:
     image: node:18-alpine
-    command: sh -c "yarn install && yarn start"
+    command: sh -c "yarn install && yarn build && yarn start"
     ports:
       - 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
     networks:
-      - inetwork
+      - app
 networks:
-  inetwork:
+  app:
+    name: inetwork
