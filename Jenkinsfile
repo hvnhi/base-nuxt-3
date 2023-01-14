@@ -8,12 +8,6 @@ pipeline {
         git 'https://github.com/hvnhi/base-nuxt-3.git'
       }
     }
-
-    stage('Send mail') {
-      steps{
-        mail bcc: '', body: 'aaaaa', cc: '', from: '', replyTo: '', subject: 'BUILD PROJECT', to: 'huynhnhi0912@gmail.com'
-      }
-    }
   }
   post {
     always {
