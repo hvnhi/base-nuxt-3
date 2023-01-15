@@ -1,7 +1,7 @@
 # Dockerfile
 FROM node:18-alpine
 
-ENV APP_ROOT /app
+ENV APP_ROOT /var/jenkins_home/workspace/develop
 # create destination directory
 RUN mkdir -p ${APP_ROOT}
 WORKDIR ${APP_ROOT}

@@ -27,6 +27,15 @@ pipeline {
           env.BRANCH_NAME = BRANCH_NAME
           env.AUTHOR = AUTHOR
           env.COMMIT_MSG = COMMIT_MSG
+          env.IMAGE_NAME = "vntech/dev"
+        }
+      }
+    }
+
+    stage('Build') {
+      steps {
+        script {
+          docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
         }
       }
     }
