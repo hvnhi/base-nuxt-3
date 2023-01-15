@@ -38,7 +38,7 @@ pipeline {
 
     success {
       sh """
-        curl -s 'https://api.telegram.org/bot5507538493:AAGzGrLpWOdRGf4or45pQ_IyejjxbSd9qvk/sendMessage?chat_id=-706657691&parse_mode=markdown&text=*SUCCESS* %0A %0A *${env.APP_NAME}* %0A %0A Branch: ${env.BRANCH_NAME} %0A %0A Author: ${env.AUTHOR}' > /dev/null
+        curl -s 'https://api.telegram.org/bot5507538493:AAGzGrLpWOdRGf4or45pQ_IyejjxbSd9qvk/sendMessage?chat_id=-706657691&parse_mode=markdown&text=*SUCCESS* %0A %0A *${env.APP_NAME}* %0A %0A Branch: ${env.BRANCH_NAME} %0A %0A Author: ${env.AUTHOR} %0A %0A Message: ${env.COMMIT_MSG}' > /dev/null
       """
     }
 
