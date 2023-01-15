@@ -32,13 +32,13 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      steps {
-        script {
-          docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
-        }
-      }
-    }
+    // stage('Build') {
+    //   steps {
+    //     script {
+    //       docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
+    //     }
+    //   }
+    // }
   }
   post {
     always {
