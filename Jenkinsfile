@@ -41,15 +41,15 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
-      steps {
-        script {
-            sh 'docker stop $( docker ps -a -q --filter="name=hvnhi_web")'
-            sh 'docker rm $( docker ps -a -q --filter="name=hvnhi_web")'
-            sh 'docker run -dp 3000:3000 --name hvnhi_web hvnhi/dev'
-        }
-      }
-    }
+    // stage('Deploy') {
+    //   steps {
+    //     script {
+    //         sh 'docker stop $( docker ps -a -q --filter="name=hvnhi_web")'
+    //         sh 'docker rm $( docker ps -a -q --filter="name=hvnhi_web")'
+    //         sh 'docker run -dp 3000:3000 --name hvnhi_web hvnhi/dev'
+    //     }
+    //   }
+    // }
     
     // stage('Push') {
     //   steps {
