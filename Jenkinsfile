@@ -2,6 +2,7 @@ def image = ''
 
 pipeline {
   agent any
+
   stages {
     stage('Prepare') {
       steps{
@@ -27,7 +28,7 @@ pipeline {
           env.BRANCH_NAME = BRANCH_NAME
           env.AUTHOR = AUTHOR
           env.COMMIT_MSG = COMMIT_MSG
-          env.IMAGE_NAME = "vntech/dev"
+          env.IMAGE_NAME = "hvnhi/dev"
         }
       }
     }
@@ -35,11 +36,41 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
+          image = docker.build("${env.IMAGE_NAME}", "-f Dockerfile .")
         }
       }
     }
+
+    stage('Deploy') {
+      steps {
+        script {
+            sh 'docker stop $( docker ps -a -q --filter="name=hvnhi_web")'
+            sh 'docker rm $( docker ps -a -q --filter="name=hvnhi_web")'
+            sh 'docker run -dp 3000:3000 --name hvnhi_web hvnhi/dev'
+        }
+      }
+    }
+    
+    // stage('Push') {
+    //   steps {
+    //     script {
+    //       // This step should not normally be used in your script. Consult the inline help for details.
+    //       withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
+    //           image.push()
+    //       }
+    //     }
+    //   }
+    // }
+
+    // stage('Deploy to k8s') {
+    //   steps {
+    //       script {
+    //           kubernetesDeploy (configs: 'deployment.dev.yaml',kubeconfigId: 'k8s')
+    //       }
+    //   }
+    // }
   }
+    
   post {
     // always {
     //   cleanWs()
