@@ -13,4 +13,4 @@ services:
       - app
 networks:
   app:
-    name: inetwork
+    name: minikube
