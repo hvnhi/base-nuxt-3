@@ -41,6 +41,17 @@ pipeline {
       }
     }
 
+    stage('Push') {
+      steps {
+        script {
+          // This step should not normally be used in your script. Consult the inline help for details.
+          withDockerRegistry(credentialsId: 'docker_hub_token', url: 'https://index.docker.io/v1/') {
+              image.push()
+          }
+        }
+      }
+    }
+
     // stage('Deploy') {
     //   steps {
     //     script {
